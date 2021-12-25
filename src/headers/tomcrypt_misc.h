@@ -6,6 +6,17 @@
 int base64_encode(const unsigned char *in,  unsigned long inlen,
                                  char *out, unsigned long *outlen);
 
+typedef enum {
+   /** Use `\r\n` as line separator */
+   BASE64_PEM_CRLF = 1,
+   /** Create output with 72 chars line length */
+   BASE64_PEM_SSH = 2,
+} base64_pem_flags;
+
+int base64_encode_pem(const unsigned char *in,  unsigned long inlen,
+                                     char *out, unsigned long *outlen,
+                            unsigned int  flags);
+
 int base64_decode(const char *in,  unsigned long inlen,
                         unsigned char *out, unsigned long *outlen);
 int base64_strict_decode(const char *in,  unsigned long inlen,
