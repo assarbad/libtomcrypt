@@ -41,6 +41,10 @@ static int s_base64_encode_internal(const unsigned char *in,    unsigned long in
    LTC_ARGCHK(out    != NULL);
    LTC_ARGCHK(outlen != NULL);
 
+   if ((void*)in == out) {
+      return CRYPT_INVALID_ARG;
+   }
+
    linelen = (mode & ssh) ? 72 : 64;
 
    /* valid output size ? */
