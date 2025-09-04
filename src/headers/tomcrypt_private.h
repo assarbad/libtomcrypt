@@ -441,6 +441,8 @@ int ecc_verify_hash_internal(void *r, void *s,
                              const unsigned char *hash, unsigned long hashlen,
                              int *stat, const ecc_key *key);
 
+int ecc_rfc6979_key(const ecc_key *priv, const unsigned char *in, unsigned long inlen, ecc_key *key);
+
 #ifdef LTC_SSH
 int ecc_ssh_ecdsa_encode_name(char *buffer, unsigned long *buflen, const ecc_key *key);
 #endif

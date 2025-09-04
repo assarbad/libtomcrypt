@@ -421,6 +421,7 @@ src/pk/ecc/ecc_import_pkcs8.c
 src/pk/ecc/ecc_import_x509.c
 src/pk/ecc/ecc_make_key.c
 src/pk/ecc/ecc_recover_key.c
+src/pk/ecc/ecc_rfc6979_key.c
 src/pk/ecc/ecc_set_curve.c
 src/pk/ecc/ecc_set_curve_internal.c
 src/pk/ecc/ecc_set_key.c

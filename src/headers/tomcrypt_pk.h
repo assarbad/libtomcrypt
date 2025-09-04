@@ -281,7 +281,17 @@ typedef struct {
 
     /** The private key */
     void *k;
+
+    /** The hash algorithm to use when creating a signature.
+     *  Setting this will enable RFC6979 compatible signature generation.
+     *  The macro ECC_SET_RFC6979_HASH_ALG() is provided as a helper
+     *  to set this.*/
+    const char *rfc6979_hash_alg;
 } ecc_key;
+
+#define ECC_SET_RFC6979_HASH_ALG(key, alg) do { \
+   (key)->rfc6979_hash_alg = (alg);             \
+} while(0)
 
 /** Formats of ECC signatures */
 typedef enum ecc_signature_type_ {

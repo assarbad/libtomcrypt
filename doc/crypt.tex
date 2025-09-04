@@ -5816,6 +5816,7 @@ is important to check yourself before using the signatures.
 To sign a message digest (hash) use the following function:
 
 \index{ecc\_sign\_hash()}
+\index{ECC\_SET\_RFC6979\_HASH\_ALG()}
 \begin{verbatim}
 int ecc_sign_hash(const unsigned char *in,
                         unsigned long  inlen,
@@ -5827,8 +5828,17 @@ int ecc_sign_hash(const unsigned char *in,
 \end{verbatim}
 
 This function will \textit{ECDSA} sign the message digest stored in the array pointed to by \code{in} of length \code{inlen} octets.  The signature
-will be stored in the array pointed to by \code{out} of length \code{outlen} octets.  The function requires a properly seeded \textit{PRNG}, and
-the \textit{ECC} \code{key} provided must be a private key.
+will be stored in the array pointed to by \code{out} of length \code{outlen} octets.  The function requires that the \textit{ECC}
+\code{key} provided must be a private key.
+
+In order to execute standard \textit{ECDSA} it requires a properly seeded \textit{PRNG}  which gets passed via \code{prng} and \code{wprng}.
+
+The deterministic signature mechanism according to \textit{RFC6979} is also supported. This does not require a \textit{PRNG}, but
+instead a valid hash function shall be set via the macro
+
+\code{ECC\_SET\_RFC6979\_HASH\_ALG(key, hash\_alg)}
+
+The expected types of the arguments to that macro are \code{(ecc\_key*, const char*)}.
 
 \index{ecc\_sign\_hash\_rfc7518()}
 \begin{verbatim}
